@@ -3,67 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loan Calculator</title>
+  <title>Apartment Funding Plan</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="card">
-    <h1>How much can I borrow?</h1>
+    <h1>How much family money do you need?</h1>
 
-    <section class="group">
-      <label>Repayment period</label>
-      <div class="year-buttons" id="yearButtons">
-        <button type="button" data-years="10" class="active">10 yr</button>
-        <button type="button" data-years="20">20 yr</button>
-        <button type="button" data-years="25">25 yr</button>
-        <button type="button" data-years="other">Other</button>
+    <fieldset class="group fieldset-toggle">
+      <legend class="legend">Loan type</legend>
+      <div
+        class="loan-type-buttons"
+        id="loanTypeButtons"
+        role="group"
+        aria-label="Select loan type"
+      >
+        <button type="button" data-type="bank" class="active" aria-pressed="true">Banque</button>
+        <button type="button" data-type="owner" aria-pressed="false">Crédit vendeur</button>
       </div>
-      <input id="yearsInput" type="number" min="1" step="1" value="10" aria-label="Years" />
-      <p class="hint">How many years you'll take to repay the loan.</p>
-    </section>
+      <p class="hint" id="loanTypeHint">Bank: 35% of net salary. Crédit vendeur: based on rent capacity.</p>
+    </fieldset>
+
+    <fieldset class="group fieldset-period">
+      <legend class="legend">Repayment period</legend>
+      <div
+        class="year-buttons"
+        id="yearButtons"
+        role="group"
+        aria-label="Quick select loan term"
+      >
+        <button type="button" data-years="10" aria-pressed="false">10 yr</button>
+        <button type="button" data-years="20" aria-pressed="false">20 yr</button>
+        <button type="button" data-years="25" class="active" aria-pressed="true">25 yr</button>
+        <button type="button" data-years="other" aria-pressed="false">Other</button>
+      </div>
+      <label for="yearsInput" class="visually-hidden">Number of years</label>
+      <input
+        id="yearsInput"
+        type="number"
+        min="1"
+        step="1"
+        value="25"
+        inputmode="numeric"
+        aria-describedby="yearsHint"
+      />
+      <p class="hint" id="yearsHint">How many years to repay the loan.</p>
+    </fieldset>
 
     <section class="group">
       <label for="rateInput">Interest rate</label>
       <div class="input-suffix-wrap">
-        <input id="rateInput" type="number" min="0" step="0.01" value="3.5" />
+        <input id="rateInput" type="number" min="0" step="0.01" value="3.5" inputmode="decimal" disabled />
         <span class="input-suffix">% / yr</span>
       </div>
-      <p class="hint">The yearly interest rate charged by the bank.</p>
+      <p class="hint">French average lending rate (from ECB).</p>
     </section>
 
     <section class="group two-cols">
       <div>
         <label for="monthlyInput">Monthly repayment</label>
         <div class="input-suffix-wrap">
-          <span class="input-prefix">€</span>
-          <input id="monthlyInput" type="number" min="0" step="1" value="1833" />
+          <span class="input-prefix" aria-hidden="true">€</span>
+          <input id="monthlyInput" type="number" min="0" step="1" value="700" inputmode="numeric" />
         </div>
-        <p class="hint">How much you can pay each month.</p>
+        <p class="hint">How much you can repay each month.</p>
       </div>
       <div>
-        <label for="amountInput">Loan amount</label>
+        <label for="targetInput">Target price</label>
         <div class="input-suffix-wrap">
-          <span class="input-prefix">€</span>
-          <input id="amountInput" type="number" min="0" step="1" value="182965" />
+          <span class="input-prefix" aria-hidden="true">€</span>
+          <input id="targetInput" type="number" min="0" step="1000" value="500000" inputmode="numeric" />
         </div>
-        <p class="hint">Total amount you can borrow.</p>
+        <p class="hint">Apartment purchase price.</p>
       </div>
     </section>
 
     <div class="result-block">
-      <p class="result" id="result">Borrowing capacity: €182,965</p>
+      <p class="result-label" id="resultLabel">Family money needed</p>
+      <p class="result-value" id="result" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="resultLabel">—</p>
       <div class="breakdown" id="breakdown">
         <div class="breakdown-row">
-          <span>Monthly repayment</span>
-          <span id="bdMonthly">€1,833</span>
+          <span>Loan capacity</span>
+          <span id="bdLoan">—</span>
         </div>
         <div class="breakdown-row">
-          <span>Total paid over <span id="bdYears">10</span> years</span>
-          <span id="bdTotal">€219,960</span>
+          <span>Monthly repayment</span>
+          <span id="bdMonthly">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Total paid over <span id="bdYears">25</span> years</span>
+          <span id="bdTotal">—</span>
         </div>
         <div class="breakdown-row breakdown-interest">
           <span>of which interest</span>
-          <span id="bdInterest">€36,995</span>
+          <span id="bdInterest">—</span>
         </div>
       </div>
     </div>
