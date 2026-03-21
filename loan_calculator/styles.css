@@ -35,12 +35,55 @@ label {
   margin-bottom: 0.4rem;
 }
 
+/* Input with prefix/suffix (€, % / yr) */
+.input-suffix-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.input-suffix-wrap:focus-within {
+  border-color: #1f1f1f;
+  outline: 2px solid rgba(31,31,31,0.15);
+}
+
+.input-prefix,
+.input-suffix {
+  padding: 0.55rem 0.6rem;
+  font-size: 0.9rem;
+  color: #666;
+  background: #f5f5f5;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.input-prefix { border-right: 1px solid #ddd; }
+.input-suffix { border-left: 1px solid #ddd; }
+
+.input-suffix-wrap input {
+  flex: 1;
+  border: none;
+  border-radius: 0;
+  padding: 0.55rem 0.6rem;
+  font-size: 0.95rem;
+  outline: none;
+  width: 0; /* flex will stretch it */
+}
+
+/* Standalone input (years field) */
 input {
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 0.55rem 0.6rem;
   font-size: 0.95rem;
+}
+
+input:focus {
+  border-color: #1f1f1f;
+  outline: 2px solid rgba(31,31,31,0.15);
 }
 
 .year-buttons {
@@ -56,6 +99,8 @@ input {
   border-radius: 8px;
   padding: 0.45rem;
   cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.1s, border-color 0.1s;
 }
 
 .year-buttons button.active {
@@ -72,12 +117,43 @@ input {
 
 .hint {
   margin: 0.4rem 0 0;
-  color: #666;
-  font-size: 0.8rem;
+  color: #888;
+  font-size: 0.78rem;
+}
+
+/* Result + breakdown */
+.result-block {
+  border-top: 1px solid #efefef;
+  padding-top: 0.9rem;
+  margin-top: 0.25rem;
 }
 
 .result {
-  margin: 0;
-  padding-top: 0.25rem;
-  font-weight: 600;
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: #444;
+}
+
+.breakdown-row span:last-child {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.breakdown-interest {
+  color: #888;
+  font-size: 0.82rem;
+  padding-left: 0.75rem;
 }

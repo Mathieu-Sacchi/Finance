@@ -11,34 +11,62 @@
     <h1>How much can I borrow?</h1>
 
     <section class="group">
-      <label>Years</label>
+      <label>Repayment period</label>
       <div class="year-buttons" id="yearButtons">
-        <button type="button" data-years="10" class="active">10</button>
-        <button type="button" data-years="20">20</button>
-        <button type="button" data-years="25">25</button>
+        <button type="button" data-years="10" class="active">10 yr</button>
+        <button type="button" data-years="20">20 yr</button>
+        <button type="button" data-years="25">25 yr</button>
         <button type="button" data-years="other">Other</button>
       </div>
       <input id="yearsInput" type="number" min="1" step="1" value="10" aria-label="Years" />
+      <p class="hint">How many years you'll take to repay the loan.</p>
     </section>
 
     <section class="group">
-      <label for="rateInput">Interest rate (% yearly)</label>
-      <input id="rateInput" type="number" min="0" step="0.01" value="3.5" />
-      <p class="hint">Current platform weighted average (simplified).</p>
+      <label for="rateInput">Interest rate</label>
+      <div class="input-suffix-wrap">
+        <input id="rateInput" type="number" min="0" step="0.01" value="3.5" />
+        <span class="input-suffix">% / yr</span>
+      </div>
+      <p class="hint">The yearly interest rate charged by the bank.</p>
     </section>
 
     <section class="group two-cols">
       <div>
-        <label for="annuityInput">Annuity (per year)</label>
-        <input id="annuityInput" type="number" min="0" step="1" value="22000" />
+        <label for="monthlyInput">Monthly repayment</label>
+        <div class="input-suffix-wrap">
+          <span class="input-prefix">€</span>
+          <input id="monthlyInput" type="number" min="0" step="1" value="1833" />
+        </div>
+        <p class="hint">How much you can pay each month.</p>
       </div>
       <div>
         <label for="amountInput">Loan amount</label>
-        <input id="amountInput" type="number" min="0" step="1" value="182965" />
+        <div class="input-suffix-wrap">
+          <span class="input-prefix">€</span>
+          <input id="amountInput" type="number" min="0" step="1" value="182965" />
+        </div>
+        <p class="hint">Total amount you can borrow.</p>
       </div>
     </section>
 
-    <p class="result" id="result">Borrowing capacity: 182,965</p>
+    <div class="result-block">
+      <p class="result" id="result">Borrowing capacity: €182,965</p>
+      <div class="breakdown" id="breakdown">
+        <div class="breakdown-row">
+          <span>Monthly repayment</span>
+          <span id="bdMonthly">€1,833</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Total paid over <span id="bdYears">10</span> years</span>
+          <span id="bdTotal">€219,960</span>
+        </div>
+        <div class="breakdown-row breakdown-interest">
+          <span>of which interest</span>
+          <span id="bdInterest">€36,995</span>
+        </div>
+      </div>
+    </div>
   </main>
 
   <script src="script.js"></script>
