@@ -1,0 +1,8 @@
+{
+  "name": "loan-calculator",
+  "private": true,
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "deploy:cloudflare": "npx wrangler@4 pages deploy . --project-name=loan-calculator"
+  }
+}
